@@ -215,6 +215,10 @@ if test $tds_mingw = no; then
 	# Readline is linked with curses, and on some systems termcap must be
 	# linked in. Others (inc debian) have termcap built into ncurses.
 	LIBS=""
+        AC_CHECK_LIB([dl], [dlopen], [
+          AC_DEFINE([HAVE_DL], 1, [Define to 1 if dl is available.]) LIBS="$LIBS -ldl"])
+        AC_CHECK_LIB([ncurses], [tputs], [
+          AC_DEFINE([HAVE_NCURSES], 1, [Define to 1 if ncurses is available.]) LIBS="$LIBS -lncurses"])
 	AC_SEARCH_LIBS(tgetent, [readline ncurses curses termcap])
 	AC_CHECK_LIB([readline], [readline], [LIBS="$LIBS -lreadline"
 	  AC_DEFINE(HAVE_READLINE, 1, [Define to 1 if you have the GNU Readline library.])], [LIBS=""] )

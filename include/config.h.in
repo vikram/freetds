@@ -44,6 +44,9 @@
    */
 #undef HAVE_DECL_TZNAME
 
+/* Define to 1 if dl is available. */
+#undef HAVE_DL
+
 /* Define if you have the GNU dld library. */
 #undef HAVE_DLD
 
@@ -214,6 +217,9 @@
 
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
+
+/* Define to 1 if ncurses is available. */
+#undef HAVE_NCURSES
 
 /* Define to 1 if you have the <netdb.h> header file. */
 #undef HAVE_NETDB_H
