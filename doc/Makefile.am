@@ -5,7 +5,7 @@
 # $Id: Makefile.am,v 1.65.4.1 2011/04/09 13:57:58 jklowden Exp $
 
 SHELL = /bin/sh
-TXT2MAN = $(srcdir)/txt2man
+TXT2MAN = txt2man
 DOCDIR = doc/freetds-$(VERSION)
 PRODUCT = FreeTDS
 TARGET_DOCDIR = $(DESTDIR)$(datadir)/$(DOCDIR)
