@@ -85,6 +85,7 @@ typedef struct _options
 		*appname, 
 		 hostname[128];
 	const char *colsep;
+        const char *rowsep;
 	char	*input_filename, 
 		*output_filename, 
 		*error_filename; 
@@ -95,6 +96,7 @@ LOGINREC* get_login(int argc, char *argv[], OPTIONS *poptions);
 /* global variables */
 OPTIONS options;
 static const char default_colsep[] = "  ";
+static const char default_rowsep[] = "\n";
 /* end global variables */
 
 
@@ -489,7 +491,7 @@ print_results(DBPROCESS *dbproc)
 				if (metacompute[i]->meta[c].width < strlen(metacompute[i]->meta[c].name))
 					metacompute[i]->meta[c].width = strlen(metacompute[i]->meta[c].name);
 
-				ret = set_format_string(meta, (c+1 < metacompute[i]->numalts)? options.colsep : "\n");
+				ret = set_format_string(meta, (c+1 < metacompute[i]->numalts)? options.colsep : options.rowsep);
 				if (ret <= 0) {
 					free(bynames);
 					fprintf(stderr, "%s:%d: asprintf(), column %d failed\n", options.appname, __LINE__, c+1);
@@ -852,6 +854,10 @@ get_login(int argc, char *argv[], OPTIONS *options)
 		case 't':
 			unescape(optarg);
 			options->colsep = strdup(optarg);
+			break;
+		case 'r':
+			unescape(optarg);
+			options->rowsep = strdup(optarg);
 			break;
 		case 'h':
 			options->headers = stdout;
